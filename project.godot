@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="grav_test"
+config/name="SquidSpace"
 config/description="Artificial Gravity Prototype"
 config/version="0.1.0"
 run/main_scene="res://assets/scenes/world.tscn"
