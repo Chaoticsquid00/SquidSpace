@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://btwgp8hbfo3fe"]
+
+[ext_resource type="Script" path="res://scripts/grav_field_character.gd" id="1_lf2il"]
+[ext_resource type="ArrayMesh" uid="uid://66pog0k1x0eq" path="res://assets/models/character/character.obj" id="2_e7uh6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asn0q"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_07g08"]
+material = SubResource("StandardMaterial3D_asn0q")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m402e"]
+points = PackedVector3Array(-0.827186, 0.230534, -0.0205829, -0.176488, -1.01149, -0.0797029, 0.119034, 0.496575, -0.138823, 0.207869, -1.01149, 0.156809, 0.828902, 0.230534, -0.0205829, -0.206153, -1.01149, 0.156809, 0.1487, -1.01149, -0.109279, -0.0581491, 0.821902, 0.186353, -0.0286456, 0.821902, -0.0797029, 0.710564, 0.319276, 0.0976571, -0.827186, 0.289634, 0.068113, -0.768017, 0.319276, -0.0797029, 0.769733, 0.319276, -0.0797029, -0.146984, -1.01149, -0.109279, 0.059865, 0.821902, 0.186353, -0.117318, 0.378376, -0.138823, -0.738352, 0.259991, 0.0976571, 0.059865, 0.851544, -0.0501269, 0.799237, 0.289634, 0.068113, 0.207869, -1.01149, 0.00899305, -0.206153, -1.01149, 0.00899305, -0.827186, 0.289634, -0.0501269, 0.828902, 0.230534, 0.0385371, 0.828902, 0.289634, -0.0205829, 0.769733, 0.259991, -0.0797029, 0.119034, 0.378376, -0.138823, -0.0544589, 0.822004, -0.0178094, 0.0303615, 0.821902, -0.0797029, -0.827186, 0.230534, 0.0385371, 0.178203, -1.01149, -0.0797029, -0.797521, 0.319276, 0.068113, -0.768017, 0.259991, -0.0797029)
+
+[node name="GravFieldCharacter" type="CharacterBody3D"]
+script = ExtResource("1_lf2il")
+
+[node name="ThirdPersonCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.966716, 0.255851, 0, -0.255851, 0.966716, 0, 2.65135, 3.49945)
+current = true
+
+[node name="FirstPersonCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.756291, -0.0860503)
+current = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="FirstPersonCamera"]
+spot_range = 22.0
+spot_angle_attenuation = 5.09824
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="FirstPersonCamera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.49)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_07g08")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = ExtResource("2_e7uh6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_m402e")

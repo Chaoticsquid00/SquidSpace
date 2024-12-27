@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://b0hne2mfxqic3"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_j2b8x"]
+[ext_resource type="PackedScene" uid="uid://dhc08p881a3fo" path="res://grav_field.tscn" id="1_yxqdr"]
+[ext_resource type="PackedScene" uid="uid://btwgp8hbfo3fe" path="res://grav_field_character.tscn" id="4_mu42o"]
+[ext_resource type="Script" path="res://grav_field_rigidbody.gd" id="4_v5gw6"]
+[ext_resource type="ArrayMesh" uid="uid://bo8dbs25mlbyw" path="res://assets/models/static/clutter/crate.obj" id="5_vbns0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3bn2m"]
+size = Vector3(5, 0.1, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mxfsx"]
+data = PackedVector3Array(-2.5, 0.05, 2.5, 2.5, 0.05, 2.5, -2.5, -0.05, 2.5, 2.5, 0.05, 2.5, 2.5, -0.05, 2.5, -2.5, -0.05, 2.5, 2.5, 0.05, -2.5, -2.5, 0.05, -2.5, 2.5, -0.05, -2.5, -2.5, 0.05, -2.5, -2.5, -0.05, -2.5, 2.5, -0.05, -2.5, 2.5, 0.05, 2.5, 2.5, 0.05, -2.5, 2.5, -0.05, 2.5, 2.5, 0.05, -2.5, 2.5, -0.05, -2.5, 2.5, -0.05, 2.5, -2.5, 0.05, -2.5, -2.5, 0.05, 2.5, -2.5, -0.05, -2.5, -2.5, 0.05, 2.5, -2.5, -0.05, 2.5, -2.5, -0.05, -2.5, 2.5, 0.05, 2.5, -2.5, 0.05, 2.5, 2.5, 0.05, -2.5, -2.5, 0.05, 2.5, -2.5, 0.05, -2.5, 2.5, 0.05, -2.5, -2.5, -0.05, 2.5, 2.5, -0.05, 2.5, -2.5, -0.05, -2.5, 2.5, -0.05, 2.5, 2.5, -0.05, -2.5, -2.5, -0.05, -2.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sp2av"]
+points = PackedVector3Array(-0.430289, -0.416375, -0.444203, 0.41649, 0.430409, 0.444327, 0.416374, 0.444203, 0.430289, 0.444172, -0.430344, -0.416428, -0.416375, -0.430289, 0.444203, -0.430289, 0.444203, -0.416375, 0.430408, 0.416492, -0.444328, -0.444327, 0.416491, 0.430409, 0.444297, -0.416546, 0.430465, -0.430409, -0.444327, 0.416491, 0.444327, 0.43041, -0.416492, 0.41649, -0.444327, -0.430409, -0.444203, -0.430289, -0.416375, 0.41649, -0.444327, 0.430409, -0.444327, 0.416491, -0.430409, -0.416492, 0.430409, 0.444327, 0.444327, 0.43041, 0.416492, 0.416374, 0.444203, -0.430289, -0.416492, 0.430409, -0.444327, 0.430408, -0.416492, -0.444328, -0.416492, -0.444327, -0.430409, -0.444327, -0.416491, 0.430409, -0.430289, 0.444203, 0.416375, 0.430288, -0.416375, 0.444203, 0.45, 0.281207, -0.351509, 0.444327, 0.416492, 0.43041, 0.430408, -0.444328, 0.416492, 0.444172, -0.416428, -0.430344, -0.444327, 0.430409, 0.416491, 0.430288, 0.444203, 0.416375, -0.430289, -0.416375, 0.444203, -0.416375, -0.430289, -0.444203)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_j2b8x")
+
+[node name="Spaceship" type="Node3D" parent="."]
+transform = Transform3D(0.999999, -0.000659625, 0.000896673, 0.00110822, 0.51415, -0.857699, 0.000104731, 0.8577, 0.514151, 0, 1.77278, 0.00790262)
+
+[node name="Floor" type="StaticBody3D" parent="Spaceship"]
+unique_name_in_owner = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spaceship/Floor"]
+mesh = SubResource("BoxMesh_3bn2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaceship/Floor"]
+shape = SubResource("ConcavePolygonShape3D_mxfsx")
+
+[node name="GravField" parent="Spaceship" instance=ExtResource("1_yxqdr")]
+transform = Transform3D(1, -4.36557e-11, -2.91038e-11, -2.91038e-11, 1, 0, 0, 2.98023e-08, 1, -0.003, 2.5, 0)
+
+[node name="Spaceship2" type="Node3D" parent="."]
+transform = Transform3D(-0.176224, -0.187462, -0.966335, -0.191101, -0.956505, 0.220405, -0.965622, 0.223508, 0.132735, 6.21464, 9.66766, 19.1374)
+
+[node name="Floor" type="StaticBody3D" parent="Spaceship2"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Spaceship2/Floor"]
+mesh = SubResource("BoxMesh_3bn2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Spaceship2/Floor"]
+shape = SubResource("ConcavePolygonShape3D_mxfsx")
+
+[node name="GravField" parent="Spaceship2" instance=ExtResource("1_yxqdr")]
+transform = Transform3D(1, -4.36557e-11, -2.91038e-11, -2.91038e-11, 1, 0, 0, 2.98023e-08, 1, -0.003, 2.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 7, 5, 7)
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(-0.0104718, -0.133771, 0.990957, -4.65661e-10, 0.991011, 0.133779, -0.999945, 0.0014009, -0.0103777, 11.1271, 4.6755, 0.822975)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.33107, -0.748549, 0.574515, 0.0887915, 0.630862, 0.770798, -0.939419, -0.204176, 0.275324, 0, 13.1296, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("4_mu42o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348974, 7.76949, 1.6109)
+init_velocity = Vector3(0, -4, 0)
+
+[node name="GravFieldRigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.72491, 2.77062)
+script = ExtResource("4_v5gw6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GravFieldRigidBody3D"]
+mesh = ExtResource("5_vbns0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GravFieldRigidBody3D"]
+shape = SubResource("ConvexPolygonShape3D_sp2av")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://5dd1kt1l6uej"]
+
+[ext_resource type="Script" path="res://scripts/grav_field_rigidbody.gd" id="1_3w2ga"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nddvs"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_24cyn"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="GravFieldBox" type="RigidBody3D"]
+transform = Transform3D(1, -2.91038e-11, 0, -5.82077e-11, 1, 0, 0, 2.98023e-08, 1, 9.65006e-10, 4.07539, 18.2751)
+linear_velocity = Vector3(0, 0, -6)
+angular_velocity = Vector3(0, 0.349066, 0.523599)
+script = ExtResource("1_3w2ga")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nddvs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_24cyn")

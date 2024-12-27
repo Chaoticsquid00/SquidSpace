@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dtb85yh6j13ry"
+path="res://.godot/imported/ship_exterior.obj-97507d26cfd58f85ef96f659c04c50fc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ship_exterior.obj-97507d26cfd58f85ef96f659c04c50fc.mesh"]
+
+source_file="res://assets/models/ship/ship_exterior.obj"
+dest_files=["res://.godot/imported/ship_exterior.obj-97507d26cfd58f85ef96f659c04c50fc.mesh", "res://.godot/imported/ship_exterior.obj-97507d26cfd58f85ef96f659c04c50fc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
