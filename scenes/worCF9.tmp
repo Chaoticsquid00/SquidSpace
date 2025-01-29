@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://b0hne2mfxqic3"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_j2b8x"]
+[ext_resource type="PackedScene" uid="uid://bxoarb60nxbbt" path="res://spaceship.tscn" id="2_3ysn6"]
+[ext_resource type="PackedScene" uid="uid://5dd1kt1l6uej" path="res://assets/scenes/grav_field_box_example.tscn" id="2_qb6kw"]
+[ext_resource type="PackedScene" uid="uid://btwgp8hbfo3fe" path="res://assets/scenes/grav_field_character.tscn" id="4_mu42o"]
+[ext_resource type="Texture2D" uid="uid://b3y8gtv3jjovr" path="res://assets/textures/skybox/panorama_image.png" id="5_1wp1g"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="6_o30fk"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lrdji"]
+panorama = ExtResource("5_1wp1g")
+
+[sub_resource type="Sky" id="Sky_5ot4t"]
+sky_material = SubResource("PanoramaSkyMaterial_lrdji")
+
+[sub_resource type="Environment" id="Environment_xqt22"]
+background_mode = 2
+sky = SubResource("Sky_5ot4t")
+ambient_light_source = 2
+ambient_light_color = Color(0.721859, 0.721859, 0.721859, 1)
+ambient_light_energy = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.271782, 0.000339803, 0.829379, 1)
+volumetric_fog_emission = Color(0.243569, 0.243569, 0.243569, 1)
+volumetric_fog_sky_affect = 0.195
+
+[node name="Game" type="Node"]
+
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("1_j2b8x")
+
+[node name="GravFieldBox" parent="World" instance=ExtResource("2_qb6kw")]
+transform = Transform3D(1, -2.91038e-11, 0, -5.82077e-11, 1, 0, 0, 2.98023e-08, 1, -9.11295, 1.13032, -8.77582e-08)
+
+[node name="Spaceship" parent="World" instance=ExtResource("2_3ysn6")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="World"]
+transform = Transform3D(-0.163425, -0.439266, -0.883367, 0.301303, -0.874847, 0.379288, -0.939419, -0.204176, 0.275324, 0, 13.1296, 0)
+shadow_enabled = true
+shadow_blur = 0.5
+
+[node name="Player" parent="World" instance=ExtResource("4_mu42o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348974, 7.76949, 1.6109)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
+environment = SubResource("Environment_xqt22")
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+script = ExtResource("6_o30fk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainUI"]
+offset_left = 23.0
+offset_top = 21.0
+offset_right = 63.0
+offset_bottom = 61.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GravLabel" type="RichTextLabel" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+text = "Gravity Enabled: False"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="CameraToggle" type="RichTextLabel" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "PoV Toggle: T"
+fit_content = true
+autowrap_mode = 0
+
+[node name="CamExplain" type="RichTextLabel" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Red line in third person is fpp view direction"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator2" type="HSeparator" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="MoveKeys" type="RichTextLabel" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Lateral Move: W, A, S, D"
+fit_content = true
+autowrap_mode = 0
+
+[node name="MoveKeys2" type="RichTextLabel" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0g Vertical Move: SPACE, SHIFT
+"
+fit_content = true
+autowrap_mode = 0
+
+[node name="MoveKeys3" type="RichTextLabel" parent="MainUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0g Yaw: Q, E
+"
+fit_content = true
+autowrap_mode = 0

@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://btwgp8hbfo3fe"]
+
+[ext_resource type="Script" path="res://scripts/grav_field_character.gd" id="1_lf2il"]
+[ext_resource type="ArrayMesh" uid="uid://b8dwhdd65qy1h" path="res://assets/models/character/character.obj" id="2_e7uh6"]
+[ext_resource type="PackedScene" uid="uid://cj5p8kd4bu5xj" path="res://scenes/field_detector.tscn" id="2_hnoj2"]
+[ext_resource type="Script" path="res://scripts/state_machine/physics_state_machine/player_states/player_physics_states/player_floor_state.gd" id="3_44qov"]
+[ext_resource type="Script" path="res://scripts/state_machine/physics_state_machine/player_states/player_physics_state_machine.gd" id="3_my00j"]
+[ext_resource type="Script" path="res://scripts/state_machine/physics_state_machine/player_states/player_physics_states/player_zero_grav_state.gd" id="4_abkv0"]
+[ext_resource type="Script" path="res://scripts/state_machine/physics_state_machine/player_states/player_physics_states/player_air_state.gd" id="6_nudwj"]
+[ext_resource type="Script" path="res://scenes/first_person_camera.gd" id="7_h6thc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asn0q"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_07g08"]
+material = SubResource("StandardMaterial3D_asn0q")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_81bb6"]
+points = PackedVector3Array(-0.812363, 1.25836, 0.00246327, -0.811568, 1.25945, 0.00745429, -0.810296, 1.26766, 0.00681961, -0.810614, 1.26821, 0.00168432, -0.809977, 1.26675, -0.003249, -0.81125, 1.25872, -0.00258545, -0.204363, 0.003295, 0.111371, -0.798209, 1.27058, 0.0416414, -0.798209, 1.2755, 0.0408336, -0.798845, 1.2766, 0.0374004, -0.796777, 1.27951, 0.03691, -0.807751, 1.27131, 0.00171317, -0.798368, 1.27295, -0.0292427, -0.797891, 1.27167, -0.0329932, -0.15363, 0.003295, -0.0686227, -0.186869, 0.003295, 0.0462285, -0.796459, 1.26474, -0.0329643, -0.196093, 0.003295, 0.125133, -0.793597, 1.27258, 0.0443821, -0.795187, 1.27696, 0.04343, -0.0396003, 1.85744, 0.102053, -0.0660005, 1.83884, 0.0950713, -0.0677499, 1.84176, 0.0577107, -0.794551, 1.27623, -0.0295601, -0.0660005, 1.83884, 0.0203502, -0.793119, 1.27331, -0.0364263, -0.762425, 1.27678, -0.0591889, -0.130252, 0.003295, -0.0829034, -0.761789, 1.27222, -0.0588138, -0.18337, 0.003295, 0.129374, -0.705808, 1.26839, 0.0886955, -0.709148, 1.27149, 0.0858682, -0.0427811, 1.79525, 0.157647, -0.0376918, 1.83574, 0.139183, -0.000159025, 1.86182, 0.104188, -0.0408726, 1.86182, 0.0577107, -0.0396003, 1.85744, 0.0133685, -0.0590029, 1.82534, -0.0127406, -0.757177, 1.28517, -0.0554095, -0.763539, 1.27915, -0.0565635, -0.751929, 1.2755, -0.0623335, -0.754314, 1.28389, -0.0583234, -0.753042, 1.28024, -0.0614968, -0.124844, 0.354538, -0.0919911, -0.000159025, 1.45568, -0.124101, 0.129934, 0.003295, -0.0829034, -0.16524, 0.003295, 0.135346, -0.11562, 1.39039, 0.158079, -0.0461208, 1.74255, 0.161599, -0.000159025, 1.79726, 0.162205, -0.000159025, 1.83829, 0.141952, 0.0394413, 1.85744, 0.102053, 0.0407136, 1.86182, 0.0577107, -0.000159025, 1.86619, 0.0577107, 0.0375329, 1.83574, 0.139183, -0.000159025, 1.86182, 0.0112336, -0.0333979, 1.83537, -0.0231554, -0.0812681, 1.49982, -0.112157, -0.000159025, 1.49982, -0.120581, -0.0413497, 1.79252, -0.0453121, -0.000159025, 1.7927, -0.0523803, 0.75177, 1.2755, -0.0623335, 0.124685, 0.354538, -0.0919911, 0.153312, 0.003295, -0.0686227, 0.76163, 1.27222, -0.0588138, 0.165081, 0.003295, 0.135346, -0.000159025, 1.39039, 0.1706, -0.000159025, 1.73562, 0.165465, 0.0459618, 1.74255, 0.161599, 0.042622, 1.79525, 0.157647, 0.0658415, 1.83884, 0.0950713, 0.795028, 1.27696, 0.04343, 0.796459, 1.27951, 0.03691, 0.0675909, 1.84176, 0.0577107, 0.0658415, 1.83884, 0.0203502, 0.0394413, 1.85744, 0.0133685, 0.0332388, 1.83537, -0.0231554, -0.000159025, 1.83793, -0.0255499, 0.0811091, 1.49982, -0.112157, 0.0411907, 1.79252, -0.0453121, 0.752883, 1.28024, -0.0614968, 0.762266, 1.27678, -0.0591889, 0.811091, 1.25872, -0.00258545, 0.18671, 0.003295, 0.0462285, 0.7963, 1.26474, -0.0329643, 0.183211, 0.003295, 0.129374, 0.705649, 1.26839, 0.0886955, 0.115461, 1.39039, 0.158079, 0.70883, 1.27149, 0.0858682, 0.793438, 1.27258, 0.0443821, 0.79805, 1.27058, 0.0416414, 0.79805, 1.2755, 0.0408336, 0.798686, 1.2766, 0.0374004, 0.810455, 1.26821, 0.00168432, 0.807592, 1.27131, 0.00171317, 0.794392, 1.27623, -0.0295601, 0.0586848, 1.82534, -0.0127406, 0.792961, 1.27331, -0.0364263, 0.757018, 1.28517, -0.0554095, 0.754155, 1.28389, -0.0583234, 0.797732, 1.27167, -0.0329932, 0.76338, 1.27915, -0.0565635, 0.812363, 1.25836, 0.00246327, 0.809819, 1.26675, -0.003249, 0.204045, 0.003295, 0.111371, 0.195934, 0.003295, 0.125133, 0.811409, 1.25945, 0.00745429, 0.810137, 1.26766, 0.00681961, 0.79805, 1.27295, -0.0292427)
+
+[node name="GravFieldCharacter" type="CharacterBody3D" node_paths=PackedStringArray("fpp_camera", "tpp_camera")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_lf2il")
+fpp_camera = NodePath("FirstPersonCamera")
+tpp_camera = NodePath("ThirdPersonCamera")
+
+[node name="FieldDetector" parent="." instance=ExtResource("2_hnoj2")]
+unique_name_in_owner = true
+
+[node name="PlayerPhysicsStateMachine" type="Node" parent="." node_paths=PackedStringArray("field_detector", "initial_state")]
+script = ExtResource("3_my00j")
+field_detector = NodePath("../FieldDetector")
+initial_state = NodePath("PlayerZeroGravState")
+
+[node name="PlayerZeroGravState" type="Node" parent="PlayerPhysicsStateMachine" node_paths=PackedStringArray("player_character", "first_person_camera", "third_person_camera", "field_detector")]
+script = ExtResource("4_abkv0")
+player_character = NodePath("../..")
+first_person_camera = NodePath("../../FirstPersonCamera")
+third_person_camera = NodePath("../../ThirdPersonCamera")
+field_detector = NodePath("../../FieldDetector")
+
+[node name="PlayerFloorState" type="Node" parent="PlayerPhysicsStateMachine" node_paths=PackedStringArray("player_character")]
+script = ExtResource("3_44qov")
+player_character = NodePath("../..")
+
+[node name="PlayerAirState" type="Node" parent="PlayerPhysicsStateMachine" node_paths=PackedStringArray("player_character")]
+script = ExtResource("6_nudwj")
+player_character = NodePath("../..")
+
+[node name="ThirdPersonCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.966716, 0.255851, 0, -0.255851, 0.966716, 0, 2.65135, 3.49945)
+current = true
+
+[node name="FirstPersonCamera" type="Camera3D" parent="." node_paths=PackedStringArray("flashlight", "direction_indicator")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.756291, -0.0860503)
+current = true
+script = ExtResource("7_h6thc")
+flashlight = NodePath("Flashlight")
+direction_indicator = NodePath("DirectionIndicator")
+
+[node name="Flashlight" type="SpotLight3D" parent="FirstPersonCamera"]
+spot_range = 22.0
+spot_angle_attenuation = 5.09824
+
+[node name="DirectionIndicator" type="MeshInstance3D" parent="FirstPersonCamera"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -0.49)
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_07g08")
+
+[node name="Character" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+mesh = ExtResource("2_e7uh6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0)
+shape = SubResource("ConvexPolygonShape3D_81bb6")

@@ -1,4 +1,5 @@
 extends Area3D
+class_name FieldDetector
 
 signal current_field_updated(current_field : GravField)
 

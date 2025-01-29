@@ -1,0 +1,19 @@
+[gd_resource type="ORMMaterial3D" load_steps=4 format=3 uid="uid://cl7s8kensfu2w"]
+
+[ext_resource type="Texture2D" uid="uid://bu3bvcbjnexmv" path="res://assets/riveted__brushed_plate_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://c2q6lmea2w2nd" path="res://assets/riveted__brushed_plate_normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://rj3vb0jo7c3e" path="res://assets/riveted__brushed_plate_heightmap.png" id="4"]
+
+[resource]
+albedo_texture = ExtResource("1")
+normal_enabled = true
+normal_texture = ExtResource("3")
+heightmap_enabled = true
+heightmap_scale = 12.5
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = ExtResource("4")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+texture_filter = 1
