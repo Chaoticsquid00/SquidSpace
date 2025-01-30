@@ -23,8 +23,8 @@ func physics_update(delta : float):
 		return
 	
 	# constant -1 y velocity to keep player on ground
-	var move_input_in_grav_basis := player_character.global_basis * Vector3(movement_input.x, -1, movement_input.y)
-	# move velocity toward input
+	var move_input_in_grav_basis := player_character.global_basis * Vector3(movement_input.x, -0.2, movement_input.y)
+	# move velocity toward movement input
 	player_character.velocity = player_character.velocity.move_toward(\
 		_input_to_floor_normal(\
 			move_input_in_grav_basis, \
@@ -32,7 +32,8 @@ func physics_update(delta : float):
 			player_character.get_floor_normal()) * move_max, \
 		move_acceleration * delta)
 	
-	# when jump pressed add a basis-oriented y impulse of 10 (plus the -1 that keeps the player grounded)
+	
+	# when jump pressed add a basis-oriented y impulse (plus remove the 1m/s that keeps the player grounded)
 	if jump_pressed:
 		player_character.velocity += current_grav_field.global_basis * Vector3(0, jump_velocity + 1, 0)
 	
@@ -42,7 +43,7 @@ func _handle_inputs():
 	movement_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	jump_pressed = Input.is_action_pressed("jump")
 
-func _input(event):
+func input_event(event):
 	if event is InputEventMouseMotion:
 		player_character.rotate_around_y(event.relative.x)
 		player_character.rotate_x_fpp_camera(event.relative.y)

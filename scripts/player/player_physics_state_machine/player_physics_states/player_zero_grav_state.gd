@@ -1,8 +1,6 @@
 extends PlayerPhysicsState
 class_name PlayerZeroGravState
 
-signal align_camera_with_body(delta : float)
-
 var movement_input : Vector2
 var yaw_input : float
 var up_down_input : float
@@ -43,7 +41,7 @@ func _handle_inputs():
 	yaw_input = Input.get_axis("yaw_ccw", "yaw_cw")
 	up_down_input = Input.get_axis("zero_g_up", "zero_g_down")
 
-func _input(event):
+func input_event(event):
 	if event is InputEventMouseMotion:
 		player_character.rotate_around_y(event.relative.x)
 		player_character.rotate_x_player(event.relative.y)

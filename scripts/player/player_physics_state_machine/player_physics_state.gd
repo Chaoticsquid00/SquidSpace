@@ -4,7 +4,7 @@ class_name PlayerPhysicsState
 static var current_grav_field : GravField
 
 # set from parent
-var player_character : GravFieldPlayer
+var player_character : Player
 
 
 func grav_field_updated(field : GravField):

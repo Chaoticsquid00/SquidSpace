@@ -1,5 +1,5 @@
 extends CharacterBody3D
-class_name GravFieldPlayer
+class_name Player
 
 var grav_field : GravField = null
 
@@ -30,7 +30,6 @@ func _physics_process(delta):
 func toggle_camera():
 	fpp_camera.current = !fpp_camera.current
 
-
 func align_body_with_gravfield():
 	var rotation_diff = basis.y.cross(grav_field.global_basis.y)
 	# line up y axes of character and grav field, then snap when within 0.03
@@ -51,8 +50,8 @@ func rotate_x_player(value):
 
 func align_camera_with_body(delta):
 	var rotation_diff = basis.y.cross(fpp_camera.global_transform.basis.y)
-	if rotation_diff.length() == 0: 
-		return
+	if rotation_diff.length() < 0.03: 
+		fpp_camera.rotation.x = 0
 	rotate(rotation_diff.normalized(), min(rotation_diff.length(), 4 * delta))
 	fpp_camera.rotation.x = rotate_toward(fpp_camera.rotation.x, 0, 4 * delta)
 

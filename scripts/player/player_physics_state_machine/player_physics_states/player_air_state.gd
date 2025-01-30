@@ -17,7 +17,7 @@ func physics_update(delta : float):
 	var grav_accel_in_field_direction = current_grav_field.global_basis * Vector3(0, grav_accel, 0)
 	player_character.velocity -= grav_accel_in_field_direction * delta
 
-func _input(event):
+func input_event(event):
 	if event is InputEventMouseMotion:
 		player_character.rotate_around_y(event.relative.x)
 		player_character.rotate_x_fpp_camera(event.relative.y)

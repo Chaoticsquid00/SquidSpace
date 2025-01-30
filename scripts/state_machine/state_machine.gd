@@ -26,6 +26,9 @@ func _process(delta):
 	if current_state:
 		current_state.update(delta)
 
+func _input(event):
+	if current_state:
+		current_state.input_event(event)
 
 func _on_state_transition(state_string : String):
 	var new_state = states[state_string]
