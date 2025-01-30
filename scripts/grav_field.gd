@@ -18,3 +18,12 @@ signal gravity_strength_changed(grav_field)
 
 func enabled():
 	return _field_enabled
+
+
+## Returns parent characterbody velocity or zero.
+func get_parent_velocity():
+	var parent = get_parent()
+	if parent:
+		if parent is CharacterBody3D:
+			return parent.velocity
+	return Vector3.ZERO

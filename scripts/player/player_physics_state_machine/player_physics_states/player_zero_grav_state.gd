@@ -31,9 +31,12 @@ func physics_update(delta : float):
 	
 	var total_input := Vector3(movement_input.x, -up_down_input, movement_input.y)
 	
-	player_character.velocity = player_character.velocity.move_toward( \
+	player_character.player_velocity = player_character.player_velocity.move_toward( \
 		player_character.basis * total_input * lateral_max, \
 		lateral_acceleration * delta)
+	
+	player_character.velocity = player_character.player_velocity
+	UISignalBus.player_velocity_changed.emit(player_character.velocity)
 
 
 func _handle_inputs():

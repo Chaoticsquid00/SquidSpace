@@ -25,7 +25,7 @@ func physics_update(delta : float):
 	# constant -1 y velocity to keep player on ground
 	var move_input_in_grav_basis := player_character.global_basis * Vector3(movement_input.x, -0.2, movement_input.y)
 	# move velocity toward movement input
-	player_character.velocity = player_character.velocity.move_toward(\
+	player_character.player_velocity = player_character.player_velocity.move_toward(\
 		_input_to_floor_normal(\
 			move_input_in_grav_basis, \
 			current_grav_field.global_basis.y, \
@@ -35,8 +35,10 @@ func physics_update(delta : float):
 	
 	# when jump pressed add a basis-oriented y impulse (plus remove the 1m/s that keeps the player grounded)
 	if jump_pressed:
-		player_character.velocity += current_grav_field.global_basis * Vector3(0, jump_velocity + 1, 0)
+		player_character.player_velocity += current_grav_field.global_basis * Vector3(0, jump_velocity + 1, 0)
 	
+	player_character.velocity = player_character.player_velocity + current_grav_field.get_parent_velocity()
+	UISignalBus.player_velocity_changed.emit(player_character.velocity)
 
 
 func _handle_inputs():

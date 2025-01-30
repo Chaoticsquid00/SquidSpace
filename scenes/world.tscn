@@ -1,12 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0hne2mfxqic3"]
+[gd_scene load_steps=15 format=3 uid="uid://b0hne2mfxqic3"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_j2b8x"]
-[ext_resource type="PackedScene" uid="uid://bxoarb60nxbbt" path="res://spaceship.tscn" id="2_3ysn6"]
+[ext_resource type="PackedScene" uid="uid://bxoarb60nxbbt" path="res://scenes/spaceship.tscn" id="2_3ysn6"]
 [ext_resource type="PackedScene" uid="uid://5dd1kt1l6uej" path="res://scenes/grav_field_box_example.tscn" id="2_qb6kw"]
 [ext_resource type="PackedScene" uid="uid://btwgp8hbfo3fe" path="res://scenes/grav_field_character.tscn" id="4_mu42o"]
 [ext_resource type="Texture2D" uid="uid://b3y8gtv3jjovr" path="res://assets/textures/skybox/panorama_image.png" id="5_1wp1g"]
-[ext_resource type="Script" path="res://scripts/UI.gd" id="6_o30fk"]
+[ext_resource type="Script" path="res://scripts/UI/UI_controller.gd" id="6_o30fk"]
+[ext_resource type="PackedScene" uid="uid://bbkguebywwjp1" path="res://scenes/UI/debug_ui.tscn" id="7_6hgew"]
 [ext_resource type="ArrayMesh" uid="uid://c7eep6htkt6vd" path="res://assets/models/ship/ship_2_applied.obj" id="7_8i2ga"]
+[ext_resource type="PackedScene" uid="uid://dulxyjkfjxwce" path="res://scenes/UI/player_hud.tscn" id="7_x0jkh"]
 [ext_resource type="Material" uid="uid://cl7s8kensfu2w" path="res://assets/riveted__brushed_plate.tres" id="8_a8f3a"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lrdji"]
@@ -55,64 +57,10 @@ environment = SubResource("Environment_xqt22")
 [node name="MainUI" type="CanvasLayer" parent="."]
 script = ExtResource("6_o30fk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainUI"]
-offset_left = 23.0
-offset_top = 21.0
-offset_right = 63.0
-offset_bottom = 61.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="PlayerHUD" parent="MainUI" instance=ExtResource("7_x0jkh")]
 
-[node name="GravLabel" type="RichTextLabel" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-text = "Gravity Enabled: False"
-fit_content = true
-autowrap_mode = 0
-
-[node name="HSeparator" type="HSeparator" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="CameraToggle" type="RichTextLabel" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "PoV Toggle: T"
-fit_content = true
-autowrap_mode = 0
-
-[node name="CamExplain" type="RichTextLabel" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Red line in third person is fpp view direction"
-fit_content = true
-autowrap_mode = 0
-
-[node name="HSeparator2" type="HSeparator" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="MoveKeys" type="RichTextLabel" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Lateral Move: W, A, S, D"
-fit_content = true
-autowrap_mode = 0
-
-[node name="MoveKeys2" type="RichTextLabel" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "0g Vertical Move: SPACE, SHIFT
-"
-fit_content = true
-autowrap_mode = 0
-
-[node name="MoveKeys3" type="RichTextLabel" parent="MainUI/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "0g Yaw: Q, E
-"
-fit_content = true
-autowrap_mode = 0
+[node name="Debug" parent="MainUI" instance=ExtResource("7_6hgew")]
+visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.8903, -2.94784, 0.142023)

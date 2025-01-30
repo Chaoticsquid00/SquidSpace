@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxoarb60nxbbt"]
 
-[ext_resource type="Script" path="res://spaceship.gd" id="1_0jq8f"]
+[ext_resource type="Script" path="res://scripts/spaceship.gd" id="1_0jq8f"]
 [ext_resource type="ArrayMesh" uid="uid://dtb85yh6j13ry" path="res://assets/models/ship/ship_exterior.obj" id="1_wddxr"]
 [ext_resource type="PackedScene" uid="uid://dhc08p881a3fo" path="res://scenes/grav_field.tscn" id="2_hykqm"]
 

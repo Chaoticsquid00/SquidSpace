@@ -1,0 +1,124 @@
+[gd_scene load_steps=6 format=3 uid="uid://dulxyjkfjxwce"]
+
+[ext_resource type="FontFile" uid="uid://dsl7tthjfwnd4" path="res://assets/fonts/Good Times Rg.otf" id="1_qnbey"]
+[ext_resource type="Texture2D" uid="uid://dgi743eyqyd58" path="res://assets/spaceman.png" id="1_wswa4"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_4o6b8"]
+color = Color(1, 1, 1, 1)
+thickness = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_udm3o"]
+load_path = "res://.godot/imported/Circle500x500.png-d1d215d759df8f876ed4dd0a226f9e25.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bkoan"]
+load_path = "res://.godot/imported/Circle500x500.png-d1d215d759df8f876ed4dd0a226f9e25.ctex"
+
+[node name="PlayerHUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LocationLabelContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LocationLabelContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LocationLabelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LocationLabelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_outline_size = 3
+theme_override_fonts/normal_font = ExtResource("1_qnbey")
+theme_override_font_sizes/normal_font_size = 50
+text = "Discovered: Spaceship"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="LocationLabelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_4o6b8")
+
+[node name="PlayerInfoContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+offset_top = 920.0
+offset_right = 120.0
+offset_bottom = 1080.0
+grow_vertical = 0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_bottom = 100
+
+[node name="CharacterPortrait" type="CenterContainer" parent="PlayerInfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Border" type="TextureRect" parent="PlayerInfoContainer/CharacterPortrait"]
+self_modulate = Color(0.209908, 0.209908, 0.209908, 1)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_udm3o")
+expand_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerInfoContainer/CharacterPortrait/Border"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+offset_left = 49.0
+offset_top = -1.0
+offset_right = 249.0
+offset_bottom = 26.0
+
+[node name="ProgressBar2" type="ProgressBar" parent="PlayerInfoContainer/CharacterPortrait/Border"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+offset_left = 49.0
+offset_top = 26.0
+offset_right = 249.0
+offset_bottom = 53.0
+
+[node name="Panel" type="Panel" parent="PlayerInfoContainer/CharacterPortrait/Border"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 54.0
+offset_right = 119.0
+offset_bottom = 80.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerInfoContainer/CharacterPortrait/Border/Panel"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 2.0
+offset_right = 66.0
+offset_bottom = 24.0
+text = "1g
+"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Mask" type="TextureRect" parent="PlayerInfoContainer/CharacterPortrait"]
+self_modulate = Color(0.0178206, 0, 0.218035, 1)
+clip_children = 2
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_bkoan")
+expand_mode = 2
+
+[node name="CharacterSprite" type="TextureRect" parent="PlayerInfoContainer/CharacterPortrait/Mask"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+offset_left = -16.0
+offset_top = 10.0
+offset_right = 66.0
+offset_bottom = 91.0
+texture = ExtResource("1_wswa4")
+expand_mode = 2

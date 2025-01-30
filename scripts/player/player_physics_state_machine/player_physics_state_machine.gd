@@ -1,9 +1,6 @@
 extends PhysicsStateMachine
 class_name PlayerPhysicsStateMachine
 
-func floored_updated():
-	current_state.floored_updated()
-
 
 func grav_field_updated(field : GravField):
 	current_state.grav_field_updated(field)

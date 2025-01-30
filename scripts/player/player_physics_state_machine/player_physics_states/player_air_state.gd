@@ -15,7 +15,12 @@ func physics_update(delta : float):
 	
 	var grav_accel = ProjectSettings.get_setting("physics/3d/default_gravity") * current_grav_field.gravity_strength
 	var grav_accel_in_field_direction = current_grav_field.global_basis * Vector3(0, grav_accel, 0)
-	player_character.velocity -= grav_accel_in_field_direction * delta
+	player_character.player_velocity -= grav_accel_in_field_direction * delta
+	
+	#TODO Solve issue of player sliding down wall and velocity being incorrect at floor
+	
+	player_character.velocity = player_character.player_velocity + current_grav_field.get_parent_velocity()
+	UISignalBus.player_velocity_changed.emit(player_character.velocity)
 
 func input_event(event):
 	if event is InputEventMouseMotion:

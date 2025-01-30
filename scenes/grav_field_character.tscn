@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/player/player_physics_state_machine/player_physics_state_machine.gd" id="3_my00j"]
 [ext_resource type="Script" path="res://scripts/player/player_physics_state_machine/player_physics_states/player_zero_grav_state.gd" id="4_abkv0"]
 [ext_resource type="Script" path="res://scripts/player/player_physics_state_machine/player_physics_states/player_air_state.gd" id="6_nudwj"]
-[ext_resource type="Script" path="res://scenes/first_person_camera.gd" id="7_h6thc"]
+[ext_resource type="Script" path="res://scripts/first_person_camera.gd" id="7_h6thc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asn0q"]
 shading_mode = 0
